@@ -1,3 +1,9 @@
+# Define color codes
+RED := \033[0;31m
+GREEN := \033[0;32m
+YELLOW := \033[0;33m
+NC := \033[0m # No Color
+
 ifeq ($(OS),Windows_NT)
   ifeq ($(shell uname -s),) # not in a bash-like shell
 	CLEANUP = del /F /Q
@@ -38,14 +44,17 @@ RESULTS = $(patsubst $(PATHT)Test%.c,$(PATHR)Test%.txt,$(SRCT) )
 PASSED = `grep -s PASS $(PATHR)*.txt`
 FAIL = `grep -s FAIL $(PATHR)*.txt`
 IGNORE = `grep -s IGNORE $(PATHR)*.txt`
+REPORT = `grep -sw Failures $(PATHR)*.txt`
+
 
 test: $(BUILD_PATHS) $(RESULTS)
 	@echo "-----------------------\nIGNORES:\n-----------------------"
 	@echo "$(IGNORE)"
 	@echo "-----------------------\nFAILURES:\n-----------------------"
-	@echo "$(FAIL)"
+	@echo "$(RED)$(FAIL)$(NC)"
 	@echo "-----------------------\nPASSED:\n-----------------------"
-	@echo "$(PASSED)"
+	@echo "$(GREEN)$(PASSED)$(NC)"
+	@echo "\n$(REPORT)"
 	@echo "\nDONE"
 
 $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
