@@ -6,8 +6,17 @@ def linear_search(arr: List[int], target: int) -> Optional[int]:
             return i
         elif v > target:
             return None
-        else:
-            return None
+    return None
 
 def binary_search(arr: List[int], target: int) -> Optional[int]:
-    return 0
+    lower = 0
+    upper = len(arr) - 1
+    while (lower <= upper):
+        mid = (lower + upper) // 2
+        if arr[mid] == target:
+            return mid
+        elif target < arr[mid]:
+            upper = mid - 1
+        else:
+            lower = mid + 1
+    return None
