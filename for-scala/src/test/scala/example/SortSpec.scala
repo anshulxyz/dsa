@@ -5,6 +5,22 @@ import org.scalatest.matchers.should._
 
 
 class SortSpec extends AnyFreeSpec with Matchers {
+  "selectionSort should" - {
+    "return a sorted array" in {
+      val sortData = List(
+        Array(1),
+        Array(2,1),
+        Array(3,1,2),
+        Array(3,2,1),
+        Array(9,1,2,3,4,5),
+        Array(5,4,3,2,1,0)
+      )
+      sortData.foreach( arr => {
+        SortingAlgorithms.selectionSort(arr) shouldEqual arr.sorted
+      })
+    }
+  }
+
   "bubbleSort should" - {
     "return a sorted array" in {
       val sortData = List(

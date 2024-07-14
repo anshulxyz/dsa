@@ -1,6 +1,29 @@
 package example
 
 object SortingAlgorithms{
+  def selectionSort(array: Array[Int]): Array[Int] = {
+    // We do a linear search for the smallest value and place it at the
+    // beginning of the unsorted list keep doing that until the unsorted list
+    // just has one element
+    var arr = array     // creating a mutable copy
+
+    for(i <- 0 until arr.size){
+      var current_lowest_index = i
+      for (j <- i until arr.size) {
+        if (arr(j) < arr(current_lowest_index)) {
+          current_lowest_index = j
+        }
+      } // at the end of this loop I'll have the index of the lowest value
+
+      if (i != current_lowest_index) {
+        arr = swap(arr, i, current_lowest_index)
+      }
+
+    }
+
+    array
+  }
+
   def bubbleSort(array: Array[Int]): Array[Int] = {
     // 1. Starting from 0, we test the first two consecutive values (x,y)
     // And if the x > y, we swap them.

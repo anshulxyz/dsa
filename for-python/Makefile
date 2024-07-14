@@ -6,5 +6,8 @@ setup:
 test:
 	rye run pytest
 
-fmt:
+lint:
 	rye run ruff check .
+
+fmt: lint
+	rye run ruff format .
