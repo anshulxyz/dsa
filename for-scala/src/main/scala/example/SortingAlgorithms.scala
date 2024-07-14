@@ -17,22 +17,25 @@ object SortingAlgorithms{
     var clean_pass = false
 
     var first = 0
+
+    // since after the first run we get the largest number at the end,
+    // we don't have to check for that number again, which means, after each 'run'
+    // the size of the array that we need to check through decreases by 1
+    var remaining = arr.size - 1
+
     while (!clean_pass) {
       // setting it to true so that if it is still true by the end then we know
       // we didn't have to make any 'swap' operations
       clean_pass= true
 
-      while (first < (arr.size - 1)) {
-        val next = first + 1
-        if (arr(first) > arr(next)) {
-          arr = swap(arr, first, next)
+      for (i <- 0 until remaining) {
+        if (arr(i) > arr(i+1)) {
+          arr = swap(arr, i, i+1)
           clean_pass = false      // if I had to swap, then it is not a clean pass
         }
-        first += 1
       }
-
-      // resetting so that we can start a clean run from first index
-      first = 0
+      // reducing the length/size that needs to be checked
+      remaining -= 1
     }
 
 
