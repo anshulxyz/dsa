@@ -1,6 +1,33 @@
 package example
 
 object SortingAlgorithms{
+  def insertionSort(array: Array[Int]): Array[Int] = {
+    var arr = array
+
+    try {
+      arr(1)
+    } catch {
+      case e: ArrayIndexOutOfBoundsException => return arr
+      case _: Throwable => println("Error fetching vale at index 1")
+    }
+
+    for (i <- 1 until arr.size) {
+      // lift the value at 'i'
+      val temp_val = arr(i)
+      var j = i - 1
+
+      while (j >= 0 && arr(j) > temp_val) {
+        arr(j+1) = arr(j)
+        j -= 1
+      }
+
+      // putting lifted value to its proper place (yet)
+      arr(j+1) = temp_val
+    }
+
+    return arr
+  }
+
   def selectionSort(array: Array[Int]): Array[Int] = {
     // We do a linear search for the smallest value and place it at the
     // beginning of the unsorted list keep doing that until the unsorted list
@@ -21,7 +48,7 @@ object SortingAlgorithms{
 
     }
 
-    array
+    arr
   }
 
   def bubbleSort(array: Array[Int]): Array[Int] = {
