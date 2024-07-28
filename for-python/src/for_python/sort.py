@@ -1,6 +1,21 @@
 from typing import List
 
 
+def insertion_sort(arr: List[int]) -> List[int]:
+    for i in range(1, len(arr)):
+        temp: int = arr[i]
+        j: int = i - 1  # immediate left value
+
+        while j <= 0:
+            if arr[j] > temp:
+                arr[j + 1] = arr[j]  # shifting rightwards
+                j -= 1  # moving the pointer leftwards
+            else:
+                break
+        arr[j + 1] = temp  # gap is on the right of the 'j'
+    return arr
+
+
 def bubble_sort(arr: List[int]) -> List[int]:
     clean_pass = False
     last_relevent_index = len(arr) - 1
