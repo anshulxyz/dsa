@@ -2,6 +2,7 @@
 RED := \033[0;31m
 GREEN := \033[0;32m
 YELLOW := \033[0;33m
+CYAN=\033[0;36m
 NC := \033[0m # No Color
 
 ifeq ($(OS),Windows_NT)
@@ -21,6 +22,7 @@ endif
 
 .PHONY: clean
 .PHONY: test
+.PHONY: fmt
 
 PATHU = test/unity/src/
 PATHS = src/
@@ -54,7 +56,7 @@ test: $(BUILD_PATHS) $(RESULTS)
 	@echo "$(RED)$(FAIL)$(NC)"
 	@echo "-----------------------\nPASSED:\n-----------------------"
 	@echo "$(GREEN)$(PASSED)$(NC)"
-	@echo "\n$(REPORT)"
+	@echo "\n$(CYAN)$(REPORT)$(NC)"
 	@echo "\nDONE"
 
 $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
@@ -91,6 +93,13 @@ clean:
 	$(CLEANUP) $(PATHO)*.o
 	$(CLEANUP) $(PATHB)*.$(TARGET_EXTENSION)
 	$(CLEANUP) $(PATHR)*.txt
+
+fmt:
+	@for dir in $(PATHS) $(PATHT); do \
+		find $$dir -type f \( -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" \) \
+		| grep -v "$(PATHU)" \
+		| xargs -I {} clang-format -i -style=file {}; \
+	done
 
 .PRECIOUS: $(PATHB)Test%.$(TARGET_EXTENSION)
 .PRECIOUS: $(PATHD)%.d
