@@ -3,7 +3,7 @@ all: setup test
 setup:
 	rye sync
 
-test:
+test: setup
 	rye run pytest
 
 lint:
