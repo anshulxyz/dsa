@@ -1,13 +1,7 @@
-all: setup test
+default: test
 
-setup:
-	rye sync
+test:
+	uvx pytest -q
 
-test: setup
-	rye run pytest
-
-lint:
-	rye run ruff check .
-
-fmt: lint
-	rye run ruff format .
+format:
+	uvx ruff check

@@ -1,24 +1,35 @@
-from typing import List, Optional
+from typing import Optional
+import pytest
 
 
-def linear_search(arr: List[int], target: int) -> Optional[int]:
-    for i, v in enumerate(arr):
-        if v == target:
-            return i
-        elif v > target:
-            return None
-    return None
+def binary_search(array: list, target: int) -> Optional[int]:
+    lower_bound = 0
+    upper_bound = len(array) - 1
 
+    while lower_bound <= upper_bound:
+        mid_index = (lower_bound + upper_bound) // 2
+        mid_value = array[mid_index]
 
-def binary_search(arr: List[int], target: int) -> Optional[int]:
-    lower = 0
-    upper = len(arr) - 1
-    while lower <= upper:
-        mid = (lower + upper) // 2
-        if arr[mid] == target:
-            return mid
-        elif target < arr[mid]:
-            upper = mid - 1
+        if mid_value == target:
+            return mid_index
+        elif target < mid_value:
+            upper_bound = mid_value - 1
         else:
-            lower = mid + 1
+            lower_bound = mid_index + 1
+
     return None
+
+
+@pytest.mark.parametrize(
+    "arr, target, expected",
+    [
+        ([1], 1, 0),  # lower = 0, upper = 1 -1 = 0
+        ([1, 2, 3, 4, 5], 3, 2),
+        ([1, 2, 3, 4, 5], 6, None),
+        ([], 1, None),
+        ([1, 2, 3, 4, 5], 1, 0),
+        ([1, 2, 3, 4, 5], 5, 4),
+    ],
+)
+def test_binary_search(arr, target, expected):
+    assert binary_search(arr, target) == expected
