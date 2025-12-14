@@ -1,3 +1,2 @@
-all:
-	mvn compile
+test:
 	mvn test
