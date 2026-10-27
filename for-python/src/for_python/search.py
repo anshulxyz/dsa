@@ -3,21 +3,7 @@ import pytest
 
 
 def binary_search(array: list, target: int) -> Optional[int]:
-    lower_bound = 0
-    upper_bound = len(array) - 1
-
-    while lower_bound <= upper_bound:
-        mid_index = (lower_bound + upper_bound) // 2
-        mid_value = array[mid_index]
-
-        if mid_value == target:
-            return mid_index
-        elif target < mid_value:
-            upper_bound = mid_value - 1
-        else:
-            lower_bound = mid_index + 1
-
-    return None
+    raise NotImplementedError
 
 
 @pytest.mark.parametrize(

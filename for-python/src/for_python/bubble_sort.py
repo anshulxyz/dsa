@@ -1,20 +1,19 @@
 import pytest
 
+def swap(l, x, y):
+    l[x],l[y] = l[y],l[x]
+
+    return l
 
 def bubble_sort(arr: list[int]) -> list[int]:
-    # assume that that we do not have a clean pass
-    clean_pass = False
-    length = len(arr) - 1 # the last address that we need to consider
+    raise NotImplementedError
 
-    while (not clean_pass):
-        clean_pass = True
-        for i in range(length):
-            if (arr[i] > arr[i+1]):
-                arr[i], arr[i+1] = arr[i+1], arr[i]
-                clean_pass = False
+def test_swap():
+    test_list = [1,2,3]
+    test_list = swap(test_list, 0, 2)
 
-    return arr
-
+    assert test_list[0] == 3
+    assert test_list[2] == 1
 
 @pytest.mark.parametrize("input_list, expected",[
     ([], []),
