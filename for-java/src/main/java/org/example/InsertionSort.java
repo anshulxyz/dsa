@@ -1,20 +1,19 @@
 package org.example;
 
+import java.util.Objects;
+
 public class InsertionSort {
     public int[] insertionSort(int[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int temp_val = arr[i];
-            int position = i - 1;
+        Objects.requireNonNull(arr);
+        for (var i = 1; i < arr.length; i++) {
+            var tempVal = arr[i];
+            var position = i - 1;
 
-            while (position >= 0) {
-                if (arr[position] > temp_val) {
-                    arr[position + 1] = arr[position];
-                    position--;
-                } else {
-                    break;
-                }
+            while (position >= 0 && arr[position] > tempVal) {
+                arr[position + 1] = arr[position];
+                position--;
             }
-            arr[position + 1] = temp_val;
+            arr[position + 1] = tempVal;
         }
         return arr;
     }

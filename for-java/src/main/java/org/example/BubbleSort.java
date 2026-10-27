@@ -1,20 +1,24 @@
 package org.example;
 
+import java.util.Objects;
+
 public class BubbleSort {
     public void bubbleSort(int[] arr) {
-        int k = 1;
-        boolean swapped = true;
+        Objects.requireNonNull(arr);
+        var swapped = true;
+        var k = 1;
 
         while (swapped) {
             swapped = false;
-            for (int i = 0; i < arr.length - k; i++) {
-                if (arr[i] > arr[i+1]) {
-                    int temp = arr[i];
-                    arr[i] = arr[i+1];
-                    arr[i+1] = temp;
+            for (var i = 0; i < arr.length - k; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    var temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
                     swapped = true;
                 }
             }
+            k++;
         }
     }
 }

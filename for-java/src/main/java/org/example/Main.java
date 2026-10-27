@@ -1,10 +1,8 @@
 package org.example;
 
 public class Main {
-    public static void main(String[] args) {
+    void main() {
         System.out.println("Hello");
     }
-
 }
 
-// prints 'From procedure()'
