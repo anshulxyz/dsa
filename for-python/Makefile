@@ -8,7 +8,7 @@ run-chain:
 	@set -e; \
 	for item in $(ITEMS); do \
 		echo "==> Executinhg tests for $$item"; \
-		uvx pytest -k "$$item"; \
+		uvx pytest --exitfirst -k "$$item"; \
 		done
 
 format:
