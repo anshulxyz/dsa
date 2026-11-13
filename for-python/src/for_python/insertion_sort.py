@@ -2,7 +2,23 @@ import pytest
 
 
 def insertion_sort(arr: list[int]) -> list[int]:
-    raise NotImplementedError
+
+    if (len(arr) < 2):
+        return arr
+
+    for i in range(1, len(arr)):
+        temp = arr[i]
+        pos = i - 1 #immediate left
+
+        while (pos >= 0):
+            if (temp < arr[pos]):
+                arr[pos + 1] = arr[pos]
+                pos -= 1
+            else:
+                break
+        arr[pos+1] = temp # why this +1, check if the "while" block doesn't
+        # happen then the temp is going back to where it came from
+    return arr
 
 
 @pytest.mark.parametrize(
